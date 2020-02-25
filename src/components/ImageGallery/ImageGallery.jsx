@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem"
 import Modal from "../Modal/Modal"
 import styles from "./ImageGalerry.module.css"
+import PropTypes from 'prop-types';
 
 export default class ImageGallery extends Component {
   state = {
@@ -38,4 +39,13 @@ export default class ImageGallery extends Component {
       </>
     )
   }
+}
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    webformatURL: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired
+  }))
 }

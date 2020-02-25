@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./Searchbar.module.css"
+import PropTypes from 'prop-types';
 
 const Searchbar = ({ query, handleSubmit, handleChange }) => (
   <header className={styles.Searchbar}>
@@ -20,6 +21,10 @@ const Searchbar = ({ query, handleSubmit, handleChange }) => (
     </form>
   </header>
 )
+
+Searchbar.propTypes = {
+  query: PropTypes.string.isRequired
+}
 
 
 export default Searchbar

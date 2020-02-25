@@ -22,10 +22,12 @@ export default class App extends Component {
   fetchImages = (query, page = 1) => {
     axios
       .get(`https://pixabay.com/api/?q=${query}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`)
-      .then(({ data }) => this.setState(({ images }) => (images.length ? { images: [...images, ...data.hits] } : { images: data.hits })))
+      .then(({ data }) => this.setImages(data))
       .catch(console.log)
       .finally(() => { this.setState({ isLoaded: false, largeLoaded: false }) })
   }
+
+  setImages = ({ hits }) => this.setState(({ images }) => (images.length ? { images: [...images, ...hits] } : { images: hits }))
 
   handleChange = ({ target }) => {
     this.setState({ query: target.value, page: 1 })
