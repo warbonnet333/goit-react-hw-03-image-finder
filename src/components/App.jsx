@@ -5,6 +5,7 @@ import LoadButton from "./LoadButton/LoadButton"
 import Spinner from "./Spinner/Spinner"
 
 import KEY from "./services/base"
+import baseUrl from './services/url'
 const axios = require('axios');
 
 
@@ -21,7 +22,7 @@ export default class App extends Component {
 
   fetchImages = (query, page = 1) => {
     axios
-      .get(`https://pixabay.com/api/?q=${query}&page=${page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`)
+      .get(baseUrl(query, page, KEY))
       .then(({ data }) => this.setImages(data))
       .catch(console.log)
       .finally(() => { this.setState({ isLoaded: false, largeLoaded: false }) })
